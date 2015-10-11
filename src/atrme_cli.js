@@ -1,4 +1,30 @@
-﻿function pathFilename(path) {
+﻿function getHitokoto() {
+    $.ajax({  
+         type : "get",  
+         async: false,  
+         url : "http://api.hitokoto.us/rand?encode=jsc",  
+         dataType : "jsonp",  
+         jsonp: "fun", 
+         jsonpCallback:"hitokoto",  
+         success : function(json){
+        var html="<span class='hitokoto' title='";
+        html+="分类："+json.catname+"&#10;";
+        html+="出自："+json.source+"&#10;";
+        html+="喜欢："+json.like+"&#10;";
+        html+="投稿："+json.author+" @ "+json.date+"'>";
+        html+=json.hitokoto;
+        html+="</span><span id='control'> - X </span>";
+        $("#hitokoto").html(html); 
+         },  
+         error:function(e){
+            alert('fail');  
+         }  
+     });
+}
+
+getHitokoto();
+
+function pathFilename(path) {
 	var match = /\/([^\/]+)$/.exec(path);
 	if (match) {
 		return match[1];
@@ -71,7 +97,7 @@ TerminalShell.filters.push(function (terminal, cmd) {
 
 TerminalShell.commands['shutdown'] = TerminalShell.commands['poweroff'] = function(terminal) {
 	if (this.sudo) {
-		terminal.print('Broadcast message from guest@atr.me');
+		terminal.print('Broadcast message from guest@0x0d.im');
 		terminal.print();
 		terminal.print('The system is going down for maintenance NOW!');
 		terminal.print('El Psy Congroo!');
@@ -108,7 +134,7 @@ function linkFile(url) {
 Filesystem = {
 	'welcome.txt': {type:'file', read:function(terminal) {
 		terminal.print();
-		terminal.print($('<h4>').text('~Welcome to the atr.me command line entrance~'));
+		terminal.print($('<h4>').text('~ Welcome to the 0x0d.im command line entrance ~'));
 		terminal.print('Use "ls", "cat", and "cd" to navigate the filesystem.');
 		terminal.print('If confused, type "help" for assistance.');
 		terminal.print();
@@ -118,10 +144,9 @@ Filesystem = {
 		terminal.print($('<h4>').text('ABOUT THE SITE'));
 		terminal.print();
 		$.each([
-			'This is the homepage, and also the command line entrance of atr.me.',
-			'Atr.me is the personal website of mine, here you can find the way',
-			'to my two blogs, the zh_CN one and the en_US one. For more about me,',
-			'you can check the \"AboutMe\" directory or the blogs.',
+			'This is the homepage, and also the command line entrance of 0x0d.im.',
+			'0x0d.im is the personal website of mine, here you can find the way',
+			'to my blog. For more about me, you can check the \"AboutMe\" directory or the blogs.',
 			'',
 			'Also you may try to take an adventure here, just have fun~',
 			''
@@ -130,10 +155,9 @@ Filesystem = {
 		});
 	}}
 };
-Filesystem['blog-cn'] = linkFile('http://blog.atr.me/');
-Filesystem['blog-en'] = linkFile('http://iblog.atr.me/');
-Filesystem['wiki'] = linkFile('http://wiki.atr.me/');
-Filesystem['AboutMe'] = linkFile('http://about.me/AstroProfundis');
+Filesystem['blog'] = linkFile('http://0x0d.im');
+Filesystem['github'] = linkFile('http://github.com/borghan');
+Filesystem['AboutMe'] = linkFile('http://0x0d.im/i');
 TerminalShell.pwd = Filesystem;
 
 TerminalShell.commands['cd'] = function(terminal, path) {
@@ -213,31 +237,19 @@ TerminalShell.commands['wget'] = TerminalShell.commands['curl'] = function(termi
 		var browser = $('<div>')
 			.addClass('browser')
 			.append($('<iframe>')
-					.prop('src', "http://blog.atr.me").width("100%").height(600)
+					.prop('src', "http://0x0d.im").width("100%").height(600)
 					.one('load', function() {
 						terminal.setWorking(false);
 					}));
 		terminal.print(browser);
 		terminal.print("If returned a 404 error, please add http://, https:// or ftp:// at start of the URL.");
 		return browser;
-	} else if (dest == "blog-en" || dest == 'iblog') {
+	} else if (dest == "github") {
 		terminal.setWorking(true);
 		var browser = $('<div>')
 			.addClass('browser')
 			.append($('<iframe>')
-					.prop('src', "http://iblog.atr.me").width("100%").height(600)
-					.one('load', function() {
-						terminal.setWorking(false);
-					}));
-		terminal.print(browser);
-		terminal.print("If returned a 404 error, please add http://, https:// or ftp:// at start of the URL.");
-		return browser;
-	} else if (dest == "wiki") {
-		terminal.setWorking(true);
-		var browser = $('<div>')
-			.addClass('browser')
-			.append($('<iframe>')
-					.prop('src', "http://wiki.atr.me").width("100%").height(600)
+					.prop('src', "http://github.com/borghan").width("100%").height(600)
 					.one('load', function() {
 						terminal.setWorking(false);
 					}));
@@ -249,7 +261,7 @@ TerminalShell.commands['wget'] = TerminalShell.commands['curl'] = function(termi
 		var browser = $('<div>')
 			.addClass('browser')
 			.append($('<iframe>')
-					.prop('src', "http://about.me/AstroProfundis").width("100%").height(600)
+					.prop('src', "http://0x0d.im/i").width("100%").height(600)
 					.one('load', function() {
 						terminal.setWorking(false);
 					}));
@@ -463,8 +475,8 @@ TerminalShell.fallback = function(terminal, cmd) {
 		'date': 'You\'re a good human.',
 		'hello': 'Why hello there!',
 		'who': 'President Who?',
-		'xkcd': 'You may call me atr.',
-		'atr': 'Hm?',
+		'xkcd': 'You may call me 0x0d.',
+		'0x0d': 'Hm?',
 		'su': 'God mode activated. Remember, with great power comes great ... aw, screw it, go have fun.',
 		'fuck': 'I have a headache.',
 		'Fuck': 'I have a headache.',
@@ -482,7 +494,7 @@ TerminalShell.fallback = function(terminal, cmd) {
 		'bash': 'You bash your head against the wall. It\'s not very effective.',
 		'ssh': 'ssh, Kikan is watching.',
 		'uname': 'Future Gadget',
-		'uname -a': 'Future Gadget atr.me C204 3nd EDITION ver3.16 #1 Last Update: Thu, May 15 2014',
+		'uname -a': 'Future Gadget 0x0d.im C204 3nd EDITION ver3.16 #1 Last Update: Sun Oct 11 2015',
 		'uptime': 'From the past to the future, it\'s up to time.',
 		'free': 'Yes you can look around for free.',
 		'touch': 'Across the Great Wall, we can touch every corner in the world!',
@@ -543,6 +555,8 @@ $(document).ready(function() {
 		$('#screen').one('cli-ready', function(e) {
 			Terminal.runCommand('cat welcome.txt');
 		});
+		Terminal.print($("<h4>").text("Enter 'help' for a list of built-in commands.").css("color", "#228B22"));
+		Terminal.print();
 		Terminal.runCommand('cat welcome.txt');
 	});
 	

@@ -109,7 +109,7 @@ var Terminal = {
 		fg_color:		'#FFF',
 		cursor_blink_time:	700,
 		cursor_style:		'block',
-		prompt:			'guest@atr.me:~# ',
+		prompt:			'guest@0x0d.im:~# ',
 		spinnerCharacters:	['[   ]','[.  ]','[.. ]','[...]'],
 		spinnerSpeed:		250,
 		typingSpeed:		50
