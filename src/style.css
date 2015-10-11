@@ -15,16 +15,16 @@ div#screen p, div#screen span, div#screen a { white-space:pre-wrap; }
 div#screen p.error { color:red; }
 div#screen li { list-style:none; }
 div#welcome { display:none; }
-#hitokoto { background-color:rgba(245, 245, 245, 0.5); color:#000; padding: 5px; }
+#hitokoto { background-color:rgba(245, 245, 245, 0.4); font-family:"Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif; color:#2F2E2E; padding: 5px; }
 #control { float: right; }
-h1 { background-image: url(dots_grey.png); color:#000; padding: 5px; text-align: center;}
+h2 { background-image: url(dots_grey.png); color:#252525; font-family:"Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif; padding: 5px; text-align: center;}
 h4, h5, h6 { text-decoration:none; margin:0; }
 a, a:visited, .linky { color: #191B19; cursor:pointer; font-weight:bold; text-decoration:none; }
 a:hover, span.linky:hover, td.linky:hover { background-color: #F6F6F3; } /*you poor IE-using bastards*/
 table { border-collapse:collapse; }
 td { padding:0 1em 0 1em; }
 .stealth { background-color:#000; border:0px; color:#000; color:black; height:0px; width:0px; opacity:0; }
-#cursor { font-weight:normal; background-color:#fff; color:#000; /*text-decoration:underline;*/ }
+#cursor { font-weight:normal; background-color:#FFF; color:#000; /*text-decoration:underline;*/ }
 div#pagealert { background-color:#FFF; bottom:0px; bottom:2px; color:#000; left:2px; margin:0; padding:0; position:absolute; text-align:center; visibility:hidden; width:auto; }
 div#indicators { bottom:0px; bottom:2px; left:2px; margin:0; padding:0; position:absolute; text-align:center; }
 div#indicators span { background-color:#FFF; color:#000; display:none; }
