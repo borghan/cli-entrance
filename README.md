@@ -1,7 +1,8 @@
 0x0d.im 命令行入口
 =========
 修改自 unixkcd, 由于未能成功使用原项目构建工具，故直接对源文件进行了修改，将 src 目录中各文件按需自行修改后放到网站根目录即可。效果见 0x0d.im 命令行入口： [0x0d.im](http://0x0d.im/cli)
-添加了[一言](http://hitokoto.us/)的API。
+
+相比原项目优化了前端，并添加了[一言](http://hitokoto.us/)的API。
 
 unixkcd
 -------
